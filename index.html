@@ -2,64 +2,64 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Love Birds & Budgies – YouTube Shorts</title>
+<title>G1 Chavan – Love Birds & Budgies Shorts</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <style>
 body {
-    margin: 0;
-    font-family: Arial, sans-serif;
-    background: #f5f7fa;
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #f2f4f7;
 }
 
 header {
-    background: #ff5a5f;
-    color: white;
-    text-align: center;
-    padding: 15px;
+  background: #ff3d00;
+  color: white;
+  padding: 16px;
+  text-align: center;
 }
 
 header h1 {
-    margin: 5px 0;
-    font-size: 20px;
+  margin: 6px 0;
+  font-size: 20px;
 }
 
-header p {
-    font-size: 14px;
-    opacity: 0.9;
+header a {
+  color: #fff;
+  text-decoration: none;
+  font-size: 14px;
+  background: rgba(255,255,255,0.25);
+  padding: 7px 12px;
+  border-radius: 6px;
+  display: inline-block;
+  margin-top: 6px;
 }
 
-.container {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(170px, 1fr));
-    gap: 12px;
-    padding: 12px;
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(170px, 1fr));
+  gap: 12px;
+  padding: 12px;
 }
 
 .card {
-    background: white;
-    border-radius: 12px;
-    overflow: hidden;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  background: #fff;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.12);
 }
 
 .card iframe {
-    width: 100%;
-    height: 300px;
-    border: none;
-}
-
-.card p {
-    margin: 6px;
-    font-size: 13px;
-    text-align: center;
+  width: 100%;
+  height: 300px;
+  border: none;
 }
 
 footer {
-    text-align: center;
-    padding: 10px;
-    font-size: 13px;
-    color: #555;
+  text-align: center;
+  padding: 12px;
+  font-size: 13px;
+  color: #555;
 }
 </style>
 </head>
@@ -67,48 +67,118 @@ footer {
 <body>
 
 <header>
-    <h1>🐦 Love Birds & Budgies</h1>
-    <p>YouTube Shorts Collection</p>
+  <h1>🐦 Love Birds & Budgies Shorts</h1>
+  <a href="https://www.youtube.com/@G1Chavan1/shorts" target="_blank">
+    ▶ Visit G1 Chavan YouTube Channel
+  </a>
 </header>
 
-<div class="container" id="shorts"></div>
+<div class="grid" id="shorts"></div>
 
 <footer>
-    Source:
-    <a href="https://www.youtube.com/@G1Chavan1/shorts" target="_blank">
-        G1Chavan1 YouTube Channel
-    </a>
+  © G1 Chavan • YouTube Shorts Collection
 </footer>
 
 <script>
-// 👉 ADD YOUTUBE SHORTS VIDEO IDs HERE
-// Example Shorts URL:
-// https://www.youtube.com/shorts/VIDEO_ID
+/*
+================================================
+PASTE YOUR FULL SHORTS URL LIST BELOW
+Duplicates & invalid URLs are auto-removed
+================================================
+*/
 
-const shortsVideos = [
-    "VIDEO_ID_1",
-    "VIDEO_ID_2",
-    "VIDEO_ID_3",
-    "VIDEO_ID_4"
-];
+const rawUrls = `
+https://www.youtube.com/shorts/NF1OQcznWzY
+https://www.youtube.com/shorts/NF1OQcznWzY
+https://www.youtube.com/shorts/QjdqfkvKbwg
+https://www.youtube.com/shorts/R2t916VTO9w
+https://www.youtube.com/shorts/GYAyX8_3xm0
+https://www.youtube.com/shorts/S9nY47KWOQw
+https://www.youtube.com/shorts/Wdr1U5wMDgY
+https://www.youtube.com/shorts/xTg5PyUr9wY
+https://www.youtube.com/shorts/064IK1Cb-C8
+https://www.youtube.com/shorts/zxgb1mGpQew
+https://www.youtube.com/shorts/mxNQ1NBZ-vM
+https://www.youtube.com/shorts/JlwxL58cGJY
+https://www.youtube.com/shorts/MVcASgDejwM
+https://www.youtube.com/shorts/RdMDclzn5Bs
+https://www.youtube.com/shorts/Ue2GLlYByKU
+https://www.youtube.com/shorts/4oIHpPoZeKs
+https://www.youtube.com/shorts/fz_V9-cN_ec
+https://www.youtube.com/shorts/ZtZY15uVeE8
+https://www.youtube.com/shorts/AyZi6T9C7YI
+https://www.youtube.com/shorts/Gg2u-bZjxiQ
+https://www.youtube.com/shorts/qdzD3GIbXI0
+https://www.youtube.com/shorts/REkQJDSHqyg
+https://www.youtube.com/shorts/jUX9CKNr5uk
+https://www.youtube.com/shorts/hrt5t72hDO0
+https://www.youtube.com/shorts/u7gon0RlINc
+https://www.youtube.com/shorts/TlEwdzJXyKo
+https://www.youtube.com/shorts/47OW9Axwmg4
+https://www.youtube.com/shorts/frneWFdhRjY
+https://www.youtube.com/shorts/Q81Q6S_qnBU
+https://www.youtube.com/shorts/0Nll4jkySKU
+https://www.youtube.com/shorts/0dvUGOBXNK4
+https://www.youtube.com/shorts/ZXB5yKLMYHY
+https://www.youtube.com/shorts/jjmedNeNXcI
+https://www.youtube.com/shorts/L2hGFVXGd6Y
+https://www.youtube.com/shorts/rQYwZISBYag
+https://www.youtube.com/shorts/HuPtVXDDlc0
+https://www.youtube.com/shorts/MV4sd_KTOks
+https://www.youtube.com/shorts/M7dspmif7ME
+https://www.youtube.com/shorts/NTOUaJ1xFKs
+https://www.youtube.com/shorts/1psHnzwJCes
+https://www.youtube.com/shorts/f_isppM1Jas
+https://www.youtube.com/shorts/34WikdMSMEQ
+https://www.youtube.com/shorts/HTTjXHpVKow
+https://www.youtube.com/shorts/HGWttspGfSI
+https://www.youtube.com/shorts/afHJLzfMhu8
+https://www.youtube.com/shorts/Eze7CLC0-bM
+https://www.youtube.com/shorts/V3krKSd6DuE
+https://www.youtube.com/shorts/PZ8P2Qg8Dqs
+https://www.youtube.com/shorts/3DL_zJLw7Bs
+https://www.youtube.com/shorts/SZgdrj65Kc4
+https://www.youtube.com/shorts/2sck2W_W31U
+https://www.youtube.com/shorts/01ZrdN8JRuM
+https://www.youtube.com/shorts/EojcB9VoDRo
+https://www.youtube.com/shorts/26RQzsaPnF8
+https://www.youtube.com/shorts/_H0mA_gx_Ao
+https://www.youtube.com/shorts/6ocfgV3gtCQ
+https://www.youtube.com/shorts/EztAPOfao5M
+https://www.youtube.com/shorts/sYBs49DCcT0
+https://www.youtube.com/shorts/XN36nr7LTcU
+https://www.youtube.com/shorts/VDvLNhHRiqQ
+https://www.youtube.com/shorts/B8G7ymgqIyY
+`.trim();
+
+/* ================================
+DO NOT EDIT BELOW
+================================ */
+
+const ids = [...new Set(
+  rawUrls
+    .split("\n")
+    .map(u => u.trim())
+    .filter(u => u.includes("/shorts/") && u.split("/shorts/")[1])
+    .map(u => u.split("/shorts/")[1])
+)];
 
 const container = document.getElementById("shorts");
 
-shortsVideos.forEach(id => {
-    const card = document.createElement("div");
-    card.className = "card";
-
-    card.innerHTML = `
-        <iframe
-            src="https://www.youtube.com/embed/${id}"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-            allowfullscreen>
-        </iframe>
-        <p>Love Birds / Budgies</p>
-    `;
-
-    container.appendChild(card);
+ids.forEach(id => {
+  const card = document.createElement("div");
+  card.className = "card";
+  card.innerHTML = `
+    <iframe
+      src="https://www.youtube.com/embed/${id}"
+      loading="lazy"
+      allowfullscreen>
+    </iframe>
+  `;
+  container.appendChild(card);
 });
+
+console.log("Total unique shorts loaded:", ids.length);
 </script>
 
 </body>
