@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>YouTube Shorts Auto Player</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #111;
+  color: #fff;
+  text-align: center;
+}
+
+header {
+  padding: 10px;
+  background: #ff3d00;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.player {
+  margin: 10px auto;
+  max-width: 420px;
+}
+
+iframe {
+  width: 100%;
+  height: 75vh;
+  border-radius: 12px;
+  border: none;
+}
+
+.controls {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  padding: 10px;
+}
+
+button {
+  padding: 10px 14px;
+  border: none;
+  border-radius: 6px;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+button:hover {
+  opacity: 0.85;
+}
+
+.primary { background: #ff3d00; color: #fff; }
+.secondary { background: #444; color: #fff; }
+
+.info {
+  font-size: 14px;
+  margin: 6px;
+  opacity: 0.8;
+}
+
+.jump {
+  margin: 10px;
+}
+
+.jump input {
+  width: 60px;
+  padding: 6px;
+  border-radius: 4px;
+  border: none;
+}
+</style>
+</head>
+
+<body>
+
+<header>🐦 Shorts Auto Player (1 Min Each)</header>
+
+<div class="player">
+  <iframe id="player" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+</div>
+
+<div class="info">
+  Short <span id="current">1</span> / <span id="total">0</span>
+</div>
+
+<div class="controls">
+  <button class="secondary" onclick="prev()">⏮ Prev</button>
+  <button class="primary" onclick="togglePlay()">⏯ Play / Pause</button>
+  <button class="secondary" onclick="next()">⏭ Next</button>
+</div>
+
+<div class="jump">
+  Jump to short #
+  <input type="number" id="jumpIndex" min="1">
+  <button onclick="jump()">Go</button>
+</div>
+
+<script>
+/* ================================
+PASTE SHORTS URLs BELOW
+================================ */
+const rawUrls = `
+https://www.youtube.com/shorts/NF1OQcznWzY
+https://www.youtube.com/shorts/QjdqfkvKbwg
+https://www.youtube.com/shorts/R2t916VTO9w
+https://www.youtube.com/shorts/GYAyX8_3xm0
+https://www.youtube.com/shorts/S9nY47KWOQw
+https://www.youtube.com/shorts/Wdr1U5wMDgY
+https://www.youtube.com/shorts/xTg5PyUr9wY
+https://www.youtube.com/shorts/064IK1Cb-C8
+https://www.youtube.com/shorts/zxgb1mGpQew
+`.trim();
+
+/* ================================
+LOGIC
+================================ */
+
+const shorts = [...new Set(
+  rawUrls
+    .split("\n")
+    .map(u => u.trim())
+    .filter(u => u.includes("/shorts/"))
+    .map(u => u.split("/shorts/")[1])
+)];
+
+let index = 0;
+let timer = null;
+let playing = true;
+const DURATION = 60 * 1000; // 1 minute
+
+const player = document.getElementById("player");
+const currentEl = document.getElementById("current");
+const totalEl = document.getElementById("total");
+
+totalEl.textContent = shorts.length;
+
+function load(i) {
+  index = (i + shorts.length) % shorts.length;
+  player.src = `https://www.youtube.com/embed/${shorts[index]}?autoplay=1&mute=1`;
+  currentEl.textContent = index + 1;
+  resetTimer();
+}
+
+function resetTimer() {
+  clearTimeout(timer);
+  if (playing) {
+    timer = setTimeout(next, DURATION);
+  }
+}
+
+function next() {
+  load(index + 1);
+}
+
+function prev() {
+  load(index - 1);
+}
+
+function togglePlay() {
+  playing = !playing;
+  if (playing) {
+    resetTimer();
+  } else {
+    clearTimeout(timer);
+  }
+}
+
+function jump() {
+  const val = parseInt(document.getElementById("jumpIndex").value);
+  if (val >= 1 && val <= shorts.length) {
+    load(val - 1);
+  }
+}
+
+// start
+load(0);
+</script>
+
+</body>
+</html>
