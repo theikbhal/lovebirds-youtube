@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Love Birds & Budgies – YouTube Shorts</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #f5f7fa;
+}
+
+header {
+    background: #ff5a5f;
+    color: white;
+    text-align: center;
+    padding: 15px;
+}
+
+header h1 {
+    margin: 5px 0;
+    font-size: 20px;
+}
+
+header p {
+    font-size: 14px;
+    opacity: 0.9;
+}
+
+.container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(170px, 1fr));
+    gap: 12px;
+    padding: 12px;
+}
+
+.card {
+    background: white;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.card iframe {
+    width: 100%;
+    height: 300px;
+    border: none;
+}
+
+.card p {
+    margin: 6px;
+    font-size: 13px;
+    text-align: center;
+}
+
+footer {
+    text-align: center;
+    padding: 10px;
+    font-size: 13px;
+    color: #555;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <h1>🐦 Love Birds & Budgies</h1>
+    <p>YouTube Shorts Collection</p>
+</header>
+
+<div class="container" id="shorts"></div>
+
+<footer>
+    Source:
+    <a href="https://www.youtube.com/@G1Chavan1/shorts" target="_blank">
+        G1Chavan1 YouTube Channel
+    </a>
+</footer>
+
+<script>
+// 👉 ADD YOUTUBE SHORTS VIDEO IDs HERE
+// Example Shorts URL:
+// https://www.youtube.com/shorts/VIDEO_ID
+
+const shortsVideos = [
+    "VIDEO_ID_1",
+    "VIDEO_ID_2",
+    "VIDEO_ID_3",
+    "VIDEO_ID_4"
+];
+
+const container = document.getElementById("shorts");
+
+shortsVideos.forEach(id => {
+    const card = document.createElement("div");
+    card.className = "card";
+
+    card.innerHTML = `
+        <iframe
+            src="https://www.youtube.com/embed/${id}"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowfullscreen>
+        </iframe>
+        <p>Love Birds / Budgies</p>
+    `;
+
+    container.appendChild(card);
+});
+</script>
+
+</body>
+</html>
